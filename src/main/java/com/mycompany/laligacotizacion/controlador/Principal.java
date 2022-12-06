@@ -5,13 +5,19 @@
 
 package com.mycompany.laligacotizacion.controlador;
 
+import com.mycompany.laligacotizacion.vista.VentanaPrincipal;
+
 /**
  *
  * @author HP
  */
 public class Principal {
 
+    
     public static void main(String[] args) {
+        
+        VentanaPrincipal miVentanaPrincipal = new VentanaPrincipal();
+        miVentanaPrincipal.setVisible(true);
         
     }
 }

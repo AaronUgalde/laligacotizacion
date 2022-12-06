@@ -4,19 +4,61 @@
  */
 package com.mycompany.laligacotizacion.vista;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author HP
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
+    VentanaAgrClien miVentanaAgrClien = new VentanaAgrClien();
+    VentanaAgrEmp miVentanaAgrEmp = new VentanaAgrEmp();
+    VentanaCliente miVentanaCliente = new VentanaCliente();
+    VentanaEliClien miVentanaEliClien = new VentanaEliClien();
+    VentanaEliEmp miVentanaEliEmp = new VentanaEliEmp();
+    VentanaEmpresa miVentanaEmpresa = new VentanaEmpresa();
+    VentanaProductos miVentanaProductos = new VentanaProductos();
+    
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
+        
+        
         initComponents();
+        this.setLocationRelativeTo(null);
+        contenedor.removeAll();
+        contenedor.add(miVentanaEmpresa, BorderLayout.CENTER);
+        contenedor.revalidate();
+        contenedor.repaint();
+        System.out.println(miVentanaEmpresa.isVisible());
+        deshabilitarBotones();
+        
     }
 
+    private void deshabilitarBotones(){
+        
+        if(miVentanaProductos.isVisible()){
+            btn_generarPDF.setEnabled(true);
+            btn_generarPDF.setVisible(true);
+            btn_siguiente.setEnabled(false);
+        }else{
+            btn_generarPDF.setEnabled(false);
+            btn_generarPDF.setVisible(false);
+            btn_siguiente.setEnabled(true);
+        }
+        
+        if(miVentanaEmpresa.isVisible()){
+        
+            btn_anterior.setEnabled(false);
+            
+        }else{
+        
+            btn_anterior.setEnabled(true);
+            
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,26 +68,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         btn_anterior = new javax.swing.JButton();
         btn_siguiente = new javax.swing.JButton();
         btn_generarPDF = new javax.swing.JButton();
+        contenedor = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setPreferredSize(new java.awt.Dimension(650, 550));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 646, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
-        );
 
         btn_anterior.setText("anterior");
         btn_anterior.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -72,35 +100,48 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        contenedor.setBackground(new java.awt.Color(51, 153, 0));
+        contenedor.setPreferredSize(new java.awt.Dimension(650, 550));
+
+        javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
+        contenedor.setLayout(contenedorLayout);
+        contenedorLayout.setHorizontalGroup(
+            contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+        contenedorLayout.setVerticalGroup(
+            contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btn_anterior)
-                        .addGap(86, 86, 86)
-                        .addComponent(btn_generarPDF)
-                        .addGap(81, 81, 81)
-                        .addComponent(btn_siguiente)
-                        .addGap(213, 213, 213))))
+                .addContainerGap(216, Short.MAX_VALUE)
+                .addComponent(btn_anterior)
+                .addGap(73, 73, 73)
+                .addComponent(btn_generarPDF)
+                .addGap(97, 97, 97)
+                .addComponent(btn_siguiente)
+                .addGap(287, 287, 287))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
+                .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_generarPDF)
                     .addComponent(btn_anterior)
-                    .addComponent(btn_siguiente)
-                    .addComponent(btn_generarPDF))
-                .addGap(35, 35, 35))
+                    .addComponent(btn_siguiente))
+                .addGap(46, 46, 46))
         );
 
         pack();
@@ -111,7 +152,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_anteriorActionPerformed
 
     private void btn_siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_siguienteActionPerformed
-        // TODO add your handling code here:
+                
+        
     }//GEN-LAST:event_btn_siguienteActionPerformed
 
     private void btn_generarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generarPDFActionPerformed
@@ -126,6 +168,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_anterior;
     private javax.swing.JButton btn_generarPDF;
     private javax.swing.JButton btn_siguiente;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel contenedor;
     // End of variables declaration//GEN-END:variables
 }

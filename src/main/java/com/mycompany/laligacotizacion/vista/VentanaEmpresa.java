@@ -14,6 +14,8 @@ public class VentanaEmpresa extends javax.swing.JPanel {
      * Creates new form VentanaEmpresa
      */
     public VentanaEmpresa() {
+        
+        System.out.println("a");
         initComponents();
     }
 
