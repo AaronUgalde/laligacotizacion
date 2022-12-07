@@ -12,53 +12,50 @@ import java.awt.BorderLayout;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    VentanaAgrClien miVentanaAgrClien = new VentanaAgrClien();
-    VentanaAgrEmp miVentanaAgrEmp = new VentanaAgrEmp();
-    VentanaCliente miVentanaCliente = new VentanaCliente();
-    VentanaEliClien miVentanaEliClien = new VentanaEliClien();
-    VentanaEliEmp miVentanaEliEmp = new VentanaEliEmp();
-    VentanaEmpresa miVentanaEmpresa = new VentanaEmpresa();
-    VentanaProductos miVentanaProductos = new VentanaProductos();
+    protected static VentanaAgrClien miVentanaAgrClien = new VentanaAgrClien();
+    protected static VentanaAgrEmp miVentanaAgrEmp = new VentanaAgrEmp();
+    protected static VentanaCliente miVentanaCliente = new VentanaCliente();
+    protected static VentanaEliClien miVentanaEliClien = new VentanaEliClien();
+    protected static VentanaEliEmp miVentanaEliEmp = new VentanaEliEmp();
+    protected static VentanaEmpresa miVentanaEmpresa = new VentanaEmpresa();
+    protected static VentanaProductos miVentanaProductos = new VentanaProductos();
     
     /**
      * Creates new form VentanaPrincipal
      */
     public VentanaPrincipal() {
         
-        
         initComponents();
         this.setLocationRelativeTo(null);
-        contenedor.removeAll();
-        contenedor.add(miVentanaEmpresa, BorderLayout.CENTER);
-        contenedor.revalidate();
-        contenedor.repaint();
-        System.out.println(miVentanaEmpresa.isVisible());
-        deshabilitarBotones();
         
+        miVentanaAgrClien.setSize(650,550);
+        miVentanaAgrEmp.setSize(650,550);
+        miVentanaCliente.setSize(650,550);
+        miVentanaEliClien.setSize(650,550);
+        miVentanaEliEmp.setSize(650,550);
+        miVentanaEmpresa.setSize(650,550);
+        miVentanaProductos.setSize(650,550);
+        
+        contenedor.add(miVentanaAgrClien, BorderLayout.CENTER);
+        contenedor.add(miVentanaAgrEmp, BorderLayout.CENTER);
+        contenedor.add(miVentanaCliente, BorderLayout.CENTER);
+        contenedor.add(miVentanaEliClien, BorderLayout.CENTER);
+        contenedor.add(miVentanaEliEmp, BorderLayout.CENTER);
+        contenedor.add(miVentanaEmpresa, BorderLayout.CENTER);
+        contenedor.add(miVentanaProductos, BorderLayout.CENTER);
+        
+        miVentanaAgrClien.setVisible(false);
+        miVentanaAgrEmp.setVisible(false);
+        miVentanaCliente.setVisible(false);
+        miVentanaEliClien.setVisible(false);
+        miVentanaEliEmp.setVisible(false);
+        miVentanaProductos.setVisible(false);
+        
+        btn_anterior.setEnabled(false);
+        btn_generarPDF.setVisible(false);
+        btn_generarPDF.setEnabled(false);
     }
 
-    private void deshabilitarBotones(){
-        
-        if(miVentanaProductos.isVisible()){
-            btn_generarPDF.setEnabled(true);
-            btn_generarPDF.setVisible(true);
-            btn_siguiente.setEnabled(false);
-        }else{
-            btn_generarPDF.setEnabled(false);
-            btn_generarPDF.setVisible(false);
-            btn_siguiente.setEnabled(true);
-        }
-        
-        if(miVentanaEmpresa.isVisible()){
-        
-            btn_anterior.setEnabled(false);
-            
-        }else{
-        
-            btn_anterior.setEnabled(true);
-            
-        }
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -148,16 +145,54 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_anteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_anteriorActionPerformed
-        // TODO add your handling code here:
+
+       if (miVentanaCliente.isVisible() || miVentanaAgrEmp.isVisible() || miVentanaEliEmp.isVisible()){
+           
+           miVentanaCliente.setVisible(false);
+           miVentanaAgrEmp.setVisible(false);
+           miVentanaEliEmp.setVisible(false);
+           miVentanaEmpresa.setVisible(true);
+           btn_anterior.setEnabled(false);
+           btn_siguiente.setEnabled(true);
+                   
+       }else if(miVentanaProductos.isVisible() || miVentanaEliClien.isVisible() || miVentanaAgrClien.isVisible()){
+       
+           miVentanaProductos.setVisible(false);
+           miVentanaEliClien.setVisible(false);
+           miVentanaAgrClien.setVisible(false);
+           miVentanaCliente.setVisible(true);
+           btn_siguiente.setEnabled(true);
+           btn_generarPDF.setEnabled(false);
+           btn_generarPDF.setVisible(false);
+           
+       }
+        
     }//GEN-LAST:event_btn_anteriorActionPerformed
 
     private void btn_siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_siguienteActionPerformed
-                
+
+        if(miVentanaEmpresa.isVisible()){
+        
+            btn_anterior.setEnabled(true);
+            miVentanaEmpresa.setVisible(false);
+            miVentanaCliente.setVisible(true);
+            
+        }else if(miVentanaCliente.isVisible()){
+        
+            btn_siguiente.setEnabled(false);
+            btn_generarPDF.setVisible(true);
+            btn_generarPDF.setEnabled(true);
+            miVentanaCliente.setVisible(false);
+            miVentanaProductos.setVisible(true);
+        
+        }
         
     }//GEN-LAST:event_btn_siguienteActionPerformed
 
     private void btn_generarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generarPDFActionPerformed
-        // TODO add your handling code here:
+        
+     
+        
     }//GEN-LAST:event_btn_generarPDFActionPerformed
 
     /**
@@ -165,9 +200,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_anterior;
-    private javax.swing.JButton btn_generarPDF;
-    private javax.swing.JButton btn_siguiente;
-    private javax.swing.JPanel contenedor;
+    protected static javax.swing.JButton btn_anterior;
+    protected static javax.swing.JButton btn_generarPDF;
+    protected static javax.swing.JButton btn_siguiente;
+    protected static javax.swing.JPanel contenedor;
     // End of variables declaration//GEN-END:variables
 }

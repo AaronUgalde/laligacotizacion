@@ -4,6 +4,8 @@
  */
 package com.mycompany.laligacotizacion.vista;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author HP
@@ -13,9 +15,10 @@ public class VentanaEmpresa extends javax.swing.JPanel {
     /**
      * Creates new form VentanaEmpresa
      */
+    
+    
     public VentanaEmpresa() {
         
-        System.out.println("a");
         initComponents();
     }
 
@@ -31,6 +34,8 @@ public class VentanaEmpresa extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         l_empresas = new javax.swing.JList<>();
+        btn_agrEmp = new javax.swing.JButton();
+        btn_eliEmpresa = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(650, 550));
 
@@ -43,6 +48,20 @@ public class VentanaEmpresa extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(l_empresas);
 
+        btn_agrEmp.setText("Agregar empresa");
+        btn_agrEmp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agrEmpActionPerformed(evt);
+            }
+        });
+
+        btn_eliEmpresa.setText("Eliminar empresa");
+        btn_eliEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliEmpresaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -50,23 +69,63 @@ public class VentanaEmpresa extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(220, 220, 220)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(222, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(242, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_agrEmp)
+                            .addComponent(btn_eliEmpresa))
+                        .addGap(69, 69, 69))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(btn_agrEmp)
+                        .addGap(30, 30, 30)
+                        .addComponent(btn_eliEmpresa)))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_agrEmpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agrEmpActionPerformed
+
+        VentanaPrincipal.contenedor.add( VentanaPrincipal.miVentanaAgrEmp);
+        VentanaPrincipal.miVentanaAgrEmp.setVisible(true);
+        VentanaPrincipal.contenedor.revalidate();
+        VentanaPrincipal.contenedor.repaint();
+        this.setVisible(false);
+        VentanaPrincipal.btn_anterior.setEnabled(true);
+        VentanaPrincipal.btn_siguiente.setEnabled(false);
+        
+    }//GEN-LAST:event_btn_agrEmpActionPerformed
+
+    private void btn_eliEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliEmpresaActionPerformed
+        
+        VentanaPrincipal.contenedor.add( VentanaPrincipal.miVentanaEliEmp);
+        VentanaPrincipal.miVentanaEliEmp.setVisible(true);
+        VentanaPrincipal.contenedor.revalidate();
+        VentanaPrincipal.contenedor.repaint();
+        this.setVisible(false);
+        VentanaPrincipal.btn_anterior.setEnabled(true);
+        VentanaPrincipal.btn_siguiente.setEnabled(false);
+        
+    }//GEN-LAST:event_btn_eliEmpresaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_agrEmp;
+    private javax.swing.JButton btn_eliEmpresa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> l_empresas;

@@ -71,7 +71,9 @@ public class VentanaAgrEmp extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-        // TODO add your handling code here:
+
+        System.out.println("agregar empresa");
+        
     }//GEN-LAST:event_btn_agregarActionPerformed
 
 
