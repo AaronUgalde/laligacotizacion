@@ -4,6 +4,9 @@
  */
 package com.mycompany.laligacotizacion.modelo;
 
+import com.mycompany.laligacotizacion.controlador.Conexion;
+import java.sql.PreparedStatement;
+
 /**
  *
  * @author HP
@@ -33,12 +36,10 @@ public class Empresa {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-     
-    public void eliminarEmpresa(int idEmpresa){
-        
+
+    @Override
+    public String toString() {
+        return "Empresa{" + "idEmpresa=" + idEmpresa + ", nombre=" + nombre + '}';
     }
     
-    public void agregarEmpresa(String nombre){
-        
-    }
 }

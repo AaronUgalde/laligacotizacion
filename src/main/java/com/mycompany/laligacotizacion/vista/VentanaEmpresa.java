@@ -4,7 +4,10 @@
  */
 package com.mycompany.laligacotizacion.vista;
 
+import com.mycompany.laligacotizacion.modelo.Empresa;
+import com.mycompany.laligacotizacion.modelo.EmpresaBD;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,14 +15,24 @@ import java.awt.BorderLayout;
  */
 public class VentanaEmpresa extends javax.swing.JPanel {
 
-    /**
-     * Creates new form VentanaEmpresa
-     */
-    
     
     public VentanaEmpresa() {
         
         initComponents();
+        llenarEmpresas();
+    }
+    
+    private void llenarEmpresas(){
+    
+        ArrayList<Empresa> misEmpresas = EmpresaBD.obtenerEmpresas();
+        jc_empresas.removeAllItems();
+        
+        for(int i=0; i<misEmpresas.size(); i++){
+        
+            jc_empresas.addItem(misEmpresas.get(i).getNombre());
+            
+        }
+        
     }
 
     /**
@@ -32,21 +45,13 @@ public class VentanaEmpresa extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        l_empresas = new javax.swing.JList<>();
         btn_agrEmp = new javax.swing.JButton();
         btn_eliEmpresa = new javax.swing.JButton();
+        jc_empresas = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(650, 550));
 
         jLabel1.setText("¿Para que empresa es el trabajo?");
-
-        l_empresas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(l_empresas);
 
         btn_agrEmp.setText("Agregar empresa");
         btn_agrEmp.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +67,8 @@ public class VentanaEmpresa extends javax.swing.JPanel {
             }
         });
 
+        jc_empresas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,7 +80,7 @@ public class VentanaEmpresa extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addContainerGap(242, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jc_empresas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btn_agrEmp)
@@ -85,16 +92,13 @@ public class VentanaEmpresa extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(btn_agrEmp)
-                        .addGap(30, 30, 30)
-                        .addComponent(btn_eliEmpresa)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_agrEmp)
+                    .addComponent(jc_empresas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addComponent(btn_eliEmpresa)
+                .addContainerGap(362, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -127,7 +131,6 @@ public class VentanaEmpresa extends javax.swing.JPanel {
     private javax.swing.JButton btn_agrEmp;
     private javax.swing.JButton btn_eliEmpresa;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> l_empresas;
+    private javax.swing.JComboBox<String> jc_empresas;
     // End of variables declaration//GEN-END:variables
 }

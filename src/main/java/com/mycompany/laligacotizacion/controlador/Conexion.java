@@ -9,10 +9,10 @@ import java.sql.*;
  *
  */
 public class Conexion {
-   static String bd = "laligacotizacion";
+   static String bd = "railway";
    static String login = "root";
-   static String password = "1234";
-   static String url = "jdbc:mysql://localhost/"+bd;
+   static String password = "mvqpytn5WqvSY7ph9lK8";
+   static String url = "jdbc:mysql://root:mvqpytn5WqvSY7ph9lK8@containers-us-west-107.railway.app:6646/railway";
 
    Connection conn = null;
 
@@ -25,6 +25,7 @@ public class Conexion {
          conn = DriverManager.getConnection(url,login,password);
 
          if (conn!=null){
+             System.out.println(conn);
             System.out.println("Conecci�n a base de datos "+bd+" OK");
          }
       }
