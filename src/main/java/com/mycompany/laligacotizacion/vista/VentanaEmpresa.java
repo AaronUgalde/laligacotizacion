@@ -15,23 +15,11 @@ import java.util.ArrayList;
  */
 public class VentanaEmpresa extends javax.swing.JPanel {
 
+    public static 
     
     public VentanaEmpresa() {
         
         initComponents();
-        llenarEmpresas();
-    }
-    
-    private void llenarEmpresas(){
-    
-        ArrayList<Empresa> misEmpresas = EmpresaBD.obtenerEmpresas();
-        jc_empresas.removeAllItems();
-        
-        for(int i=0; i<misEmpresas.size(); i++){
-        
-            jc_empresas.addItem(misEmpresas.get(i).getNombre());
-            
-        }
         
     }
 
@@ -68,6 +56,11 @@ public class VentanaEmpresa extends javax.swing.JPanel {
         });
 
         jc_empresas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jc_empresas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jc_empresasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -126,11 +119,15 @@ public class VentanaEmpresa extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btn_eliEmpresaActionPerformed
 
+    private void jc_empresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jc_empresasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jc_empresasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agrEmp;
     private javax.swing.JButton btn_eliEmpresa;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JComboBox<String> jc_empresas;
+    public static javax.swing.JComboBox<String> jc_empresas;
     // End of variables declaration//GEN-END:variables
 }

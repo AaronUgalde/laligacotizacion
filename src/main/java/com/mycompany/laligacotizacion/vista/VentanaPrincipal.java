@@ -4,7 +4,10 @@
  */
 package com.mycompany.laligacotizacion.vista;
 
+import com.mycompany.laligacotizacion.modelo.Empresa;
+import com.mycompany.laligacotizacion.modelo.EmpresaBD;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +22,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     protected static VentanaEliEmp miVentanaEliEmp = new VentanaEliEmp();
     protected static VentanaEmpresa miVentanaEmpresa = new VentanaEmpresa();
     protected static VentanaProductos miVentanaProductos = new VentanaProductos();
+    protected static ArrayList<Empresa> misEmpresas;
     
     /**
      * Creates new form VentanaPrincipal
@@ -26,6 +30,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         
         initComponents();
+        llenarEmpresas();
         this.setLocationRelativeTo(null);
         
         miVentanaAgrClien.setSize(650,550);
@@ -54,8 +59,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btn_anterior.setEnabled(false);
         btn_generarPDF.setVisible(false);
         btn_generarPDF.setEnabled(false);
+        
     }
 
+    static void llenarEmpresas(){
+    
+        misEmpresas = EmpresaBD.obtenerEmpresas();
+        miVentanaEmpresa.jc_empresas.removeAllItems();
+        miVentanaEliEmp.jc_eliEmpresa.removeAllItems();
+        
+        for(int i=0; i<misEmpresas.size(); i++){
+        
+            miVentanaEmpresa.jc_empresas.addItem(misEmpresas.get(i).getNombre());
+            miVentanaEliEmp.jc_eliEmpresa.addItem(misEmpresas.get(i).getNombre());
+            
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -156,7 +176,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
            btn_siguiente.setEnabled(true);
                    
        }else if(miVentanaProductos.isVisible() || miVentanaEliClien.isVisible() || miVentanaAgrClien.isVisible()){
-       
+
            miVentanaProductos.setVisible(false);
            miVentanaEliClien.setVisible(false);
            miVentanaAgrClien.setVisible(false);

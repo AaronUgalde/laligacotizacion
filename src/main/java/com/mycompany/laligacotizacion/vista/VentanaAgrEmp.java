@@ -4,6 +4,8 @@
  */
 package com.mycompany.laligacotizacion.vista;
 
+import com.mycompany.laligacotizacion.modelo.EmpresaBD;
+
 /**
  *
  * @author HP
@@ -72,7 +74,8 @@ public class VentanaAgrEmp extends javax.swing.JPanel {
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
 
-        System.out.println("agregar empresa");
+        EmpresaBD.registrarEmpresa(tf_nombreEmpresa.getText());
+        VentanaPrincipal.llenarEmpresas();
         
     }//GEN-LAST:event_btn_agregarActionPerformed
 

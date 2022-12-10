@@ -4,6 +4,10 @@
  */
 package com.mycompany.laligacotizacion.vista;
 
+import com.mycompany.laligacotizacion.modelo.Empresa;
+import com.mycompany.laligacotizacion.modelo.EmpresaBD;
+import java.util.ArrayList;
+
 /**
  *
  * @author HP
@@ -77,7 +81,8 @@ public class VentanaEliEmp extends javax.swing.JPanel {
 
     private void btn_eliEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliEmpresaActionPerformed
 
-        System.out.println("eliminar empresa");
+        EmpresaBD.eliminarEmpresa(jc_eliEmpresa.getSelectedItem().toString());
+        VentanaPrincipal.llenarEmpresas();
         
     }//GEN-LAST:event_btn_eliEmpresaActionPerformed
 
@@ -89,6 +94,6 @@ public class VentanaEliEmp extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_eliEmpresa;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JComboBox<String> jc_eliEmpresa;
+    public static javax.swing.JComboBox<String> jc_eliEmpresa;
     // End of variables declaration//GEN-END:variables
 }

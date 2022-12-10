@@ -23,9 +23,9 @@ public class EmpresaBD {
         
         try{
         
-            PreparedStatement ps = miConexion.getConnection().prepareStatement("INSERT INTO empresa VALUES (?)");
+            PreparedStatement ps = miConexion.getConnection().prepareStatement("INSERT INTO empresa (nombre_empresa) VALUES (?)");
             ps.setString(1, nombre);
-            ps.executeQuery();
+            ps.executeUpdate();
             
         }catch(SQLException e){
         
@@ -44,7 +44,7 @@ public class EmpresaBD {
         
             PreparedStatement ps = miConexion.getConnection().prepareStatement("DELETE FROM empresa WHERE nombre_empresa = (?)");
             ps.setString(1, nombre);
-            ps.executeQuery();
+            ps.executeUpdate();
         
         }catch(SQLException e){
         

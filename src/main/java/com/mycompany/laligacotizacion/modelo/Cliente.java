@@ -21,6 +21,13 @@ public class Cliente {
         this.nombre = nombre;
         this.idEmpresa = miEmpresa.idEmpresa;
     }
+    
+    public Cliente(int idCliente, String correo, String nombre, int idEmpresa) {
+        this.idCliente = idCliente;
+        this.correo = correo;
+        this.nombre = nombre;
+        this.idEmpresa = idEmpresa;
+    }
 
     public int getIdCliente() {
         return idCliente;

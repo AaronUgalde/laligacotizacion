@@ -6,7 +6,9 @@ package com.mycompany.laligacotizacion.modelo;
 
 import com.mycompany.laligacotizacion.controlador.Conexion;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,7 +27,7 @@ public class ClienteBD {
             ps.setString(1, nombre);
             ps.setString(2, correo);
             ps.setInt(3, idEmpresa);
-            ps.executeQuery();
+            ps.executeUpdate();
             
         }catch(SQLException e){
         
@@ -44,7 +46,7 @@ public class ClienteBD {
         
             PreparedStatement ps = miConexion.getConnection().prepareStatement("DELETE FROM cliente WHERE nombre_cliente = (?)");
             ps.setString(1, nombre);
-            ps.executeQuery();
+            ps.executeUpdate();
             
         }catch(SQLException e){
         
@@ -55,9 +57,33 @@ public class ClienteBD {
         
     }
     
-    public void obtenerClientes(){
+    public static ArrayList<Cliente> obtenerClientes(int idEmpresa){
     
-    
+        Conexion miConexion = new Conexion ();
+        ResultSet rs = null;
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        
+        try{
+        
+            PreparedStatement ps = miConexion.getConnection().prepareStatement("SELECT * FROM cliente WHERE idempresa = (?)");
+            ps.setInt(1, idEmpresa);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+            
+                Cliente miCliente = new Cliente(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4));
+                listaClientes.add(miCliente);
+                
+            }
+            
+        }catch(SQLException e){
+        
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "no se elimino el cliente");
+            
+        }
+        
+        return listaClientes;
         
     }
     
