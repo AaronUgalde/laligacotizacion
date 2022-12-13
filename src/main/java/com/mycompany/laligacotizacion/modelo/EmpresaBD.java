@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class EmpresaBD {
     
+    public static ArrayList<Empresa> listaEmpresas = new ArrayList<>();
+    
     public static void registrarEmpresa(String nombre){
     
         Conexion miConexion = new Conexion();
@@ -59,7 +61,7 @@ public class EmpresaBD {
     
         Conexion miConexion = new Conexion();
         ResultSet rs = null;
-        ArrayList<Empresa> listaEmpresas = new ArrayList<>();
+        listaEmpresas.clear();
         
         try{
         
@@ -80,7 +82,24 @@ public class EmpresaBD {
             
         }
         
+        System.out.println(listaEmpresas);
         return listaEmpresas;
+        
+    }
+    
+    public static Empresa obtenerEmpresa(String nombre){
+    
+        for(Empresa e: listaEmpresas){
+        
+            if(e.getNombre().equals(nombre)){
+            
+                return e;
+                
+            }
+            
+        }
+        
+        return null;
         
     }
     

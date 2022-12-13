@@ -4,6 +4,10 @@
  */
 package com.mycompany.laligacotizacion.vista;
 
+import com.mycompany.laligacotizacion.modelo.ClienteBD;
+import com.mycompany.laligacotizacion.modelo.EmpresaBD;
+import static com.mycompany.laligacotizacion.vista.VentanaPrincipal.miVentanaEmpresa;
+
 /**
  *
  * @author HP
@@ -71,7 +75,8 @@ public class VentanaEliClien extends javax.swing.JPanel {
 
     private void btn_eliClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliClienteActionPerformed
 
-        System.out.println("eliminar cliente");
+        ClienteBD.eliminarCliente(jc_eliCliente.getSelectedItem().toString());
+        VentanaPrincipal.llenarClientes(EmpresaBD.obtenerEmpresa((String) miVentanaEmpresa.jc_empresas.getSelectedItem()).getIdEmpresa());
         
     }//GEN-LAST:event_btn_eliClienteActionPerformed
 
@@ -79,6 +84,6 @@ public class VentanaEliClien extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_eliCliente;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JComboBox<String> jc_eliCliente;
+    public static javax.swing.JComboBox<String> jc_eliCliente;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,8 @@
  */
 package com.mycompany.laligacotizacion.vista;
 
+import com.mycompany.laligacotizacion.modelo.Cliente;
+import com.mycompany.laligacotizacion.modelo.ClienteBD;
 import com.mycompany.laligacotizacion.modelo.Empresa;
 import com.mycompany.laligacotizacion.modelo.EmpresaBD;
 import java.awt.BorderLayout;
@@ -23,6 +25,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     protected static VentanaEmpresa miVentanaEmpresa = new VentanaEmpresa();
     protected static VentanaProductos miVentanaProductos = new VentanaProductos();
     protected static ArrayList<Empresa> misEmpresas;
+    protected static ArrayList<Cliente> misClientes;
     
     /**
      * Creates new form VentanaPrincipal
@@ -73,6 +76,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             miVentanaEmpresa.jc_empresas.addItem(misEmpresas.get(i).getNombre());
             miVentanaEliEmp.jc_eliEmpresa.addItem(misEmpresas.get(i).getNombre());
             
+        }
+        
+    }
+    
+    static void llenarClientes(int idEmpresa){
+    
+        misClientes = ClienteBD.obtenerClientes(idEmpresa);
+        miVentanaCliente.jc_clientes.removeAllItems();
+        miVentanaEliClien.jc_eliCliente.removeAllItems();
+        
+        for(int i=0; i<misClientes.size(); i++){
+        
+            miVentanaCliente.jc_clientes.addItem(misClientes.get(i).getNombre());
+            miVentanaEliClien.jc_eliCliente.addItem(misClientes.get(i).getNombre());
+                    
         }
         
     }
@@ -196,6 +214,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             btn_anterior.setEnabled(true);
             miVentanaEmpresa.setVisible(false);
             miVentanaCliente.setVisible(true);
+            llenarClientes(EmpresaBD.obtenerEmpresa((String) miVentanaEmpresa.jc_empresas.getSelectedItem()).getIdEmpresa());
             
         }else if(miVentanaCliente.isVisible()){
         

@@ -114,6 +114,6 @@ public class VentanaCliente extends javax.swing.JPanel {
     private javax.swing.JButton btn_agrCliente;
     private javax.swing.JButton btn_eliCliente;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JComboBox<String> jc_clientes;
+    public static javax.swing.JComboBox<String> jc_clientes;
     // End of variables declaration//GEN-END:variables
 }

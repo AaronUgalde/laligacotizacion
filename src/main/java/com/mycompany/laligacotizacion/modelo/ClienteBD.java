@@ -17,13 +17,15 @@ import javax.swing.JOptionPane;
  */
 public class ClienteBD {
     
-    public void registrarCliente(String nombre, String correo, int idEmpresa){
+    public static ArrayList<Cliente> listaClientes = new ArrayList<>();
+    
+    public static void registrarCliente(String nombre, String correo, int idEmpresa){
     
         Conexion miConexion = new Conexion();
         
         try{
         
-            PreparedStatement ps = miConexion.getConnection().prepareStatement("INSERT INTO cliente VALUES(?,?,?)");
+            PreparedStatement ps = miConexion.getConnection().prepareStatement("INSERT INTO cliente (nombre_cliente, correo_cliente, idempresa) VALUES(?,?,?)");
             ps.setString(1, nombre);
             ps.setString(2, correo);
             ps.setInt(3, idEmpresa);
@@ -38,7 +40,7 @@ public class ClienteBD {
     
     }
     
-    public void eliminarCliente(String nombre){
+    public static void eliminarCliente(String nombre){
     
         Conexion miConexion = new Conexion();
         
@@ -61,7 +63,7 @@ public class ClienteBD {
     
         Conexion miConexion = new Conexion ();
         ResultSet rs = null;
-        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        listaClientes.clear();
         
         try{
         
@@ -71,20 +73,43 @@ public class ClienteBD {
             
             while(rs.next()){
             
-                Cliente miCliente = new Cliente(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4));
+                Cliente miCliente = new Cliente(rs.getInt(1),rs.getString(3),rs.getString(2),rs.getInt(4));
                 listaClientes.add(miCliente);
                 
             }
             
         }catch(SQLException e){
-        
+            
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "no se elimino el cliente");
+            JOptionPane.showMessageDialog(null, "no se obtuvieron los clientes");
+            
+        }
+        
+        if(listaClientes.isEmpty()){
+        
+            JOptionPane.showMessageDialog(null,"no tienes clientes agregados");
             
         }
         
         return listaClientes;
         
     }
+
+    public static ArrayList<Cliente> getListaClientes() {
+        return listaClientes;
+    }
     
+    public static Cliente getCliente(String nombre) {
+        
+        for (Cliente c: listaClientes){
+        
+            if(c.getNombre().equals(nombre)){
+            
+                return c;
+                
+            }
+            
+        }
+        return null;
+    }
 }

@@ -15,8 +15,6 @@ import java.util.ArrayList;
  */
 public class VentanaEmpresa extends javax.swing.JPanel {
 
-    public static 
-    
     public VentanaEmpresa() {
         
         initComponents();

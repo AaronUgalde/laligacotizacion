@@ -4,6 +4,10 @@
  */
 package com.mycompany.laligacotizacion.vista;
 
+import com.mycompany.laligacotizacion.modelo.ClienteBD;
+import com.mycompany.laligacotizacion.modelo.EmpresaBD;
+import static com.mycompany.laligacotizacion.vista.VentanaPrincipal.miVentanaEmpresa;
+
 /**
  *
  * @author HP
@@ -109,12 +113,13 @@ public class VentanaAgrClien extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tf_correoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_correoClienteActionPerformed
-        // TODO add your handling code here:
+        //
     }//GEN-LAST:event_tf_correoClienteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        System.out.println("agregar cliente");
+        ClienteBD.registrarCliente(tf_nombreCliente.getText(),tf_correoCliente.getText(),EmpresaBD.obtenerEmpresa((String) miVentanaEmpresa.jc_empresas.getSelectedItem()).getIdEmpresa());
+        VentanaPrincipal.llenarClientes(EmpresaBD.obtenerEmpresa((String) miVentanaEmpresa.jc_empresas.getSelectedItem()).getIdEmpresa());
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
