@@ -4,6 +4,9 @@
  */
 package com.mycompany.laligacotizacion.vista;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -13,12 +16,25 @@ import javax.swing.table.TableModel;
  * @author HP
  */
 public class VentanaProductos extends javax.swing.JPanel {
+    
+    JButton miButton = new JButton("\u2718");
+    ActionListener listener;
+   
 
     /**
      * Creates new form VentanaProductos
      */
     public VentanaProductos() {
         initComponents();
+        listener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+                    
+            System.out.println("a");
+                    
+        }
+    };
+        t_productos.setDefaultRenderer(Object.class, new ButtonRenderer());
     }
 
     /**
@@ -46,6 +62,8 @@ public class VentanaProductos extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         t_productos = new javax.swing.JTable();
         btn_agrProducto = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        t_productos1 = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(650, 550));
 
@@ -86,9 +104,14 @@ public class VentanaProductos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Unidad", "Concepto", "Precio unitario", "Subtotal"
+                "Unidad", "Concepto", "Precio unitario", "Subtotal", "Eliminar"
             }
-        ));
+        ){
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+
+        });
         jScrollPane2.setViewportView(t_productos);
 
         btn_agrProducto.setText("Agregar producto");
@@ -97,6 +120,21 @@ public class VentanaProductos extends javax.swing.JPanel {
                 btn_agrProductoActionPerformed(evt);
             }
         });
+
+        t_productos1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Unidad", "Concepto", "Precio unitario", "Subtotal", "Eliminar"
+            }
+        ){
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+
+        });
+        jScrollPane3.setViewportView(t_productos1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,8 +176,10 @@ public class VentanaProductos extends javax.swing.JPanel {
                 .addContainerGap(60, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(169, 169, 169))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,14 +207,16 @@ public class VentanaProductos extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(197, 197, 197)
                         .addComponent(btn_agrProducto)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(135, 135, 135)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -194,10 +236,12 @@ public class VentanaProductos extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) t_productos.getModel();
         try{
             
-            model.addRow(new Object[]{tf_cantidadUnidades.getText(),tf_nombreProyecto.getText()+"\n"+ta_descripcion.getText(),tf_precioUnitario.getText(),Integer.parseInt(tf_cantidadUnidades.getText())*Integer.parseInt(tf_precioUnitario.getText())});
+            miButton.addActionListener(listener);
+            model.addRow(new Object[]{tf_cantidadUnidades.getText(),tf_nombreProyecto.getText()+"\n"+ta_descripcion.getText(),tf_precioUnitario.getText(),Integer.parseInt(tf_cantidadUnidades.getText())*Integer.parseInt(tf_precioUnitario.getText()),(JButton)miButton});
             
         }catch(Exception e){
         
+            System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "Verifique los datosa del producto");
             
         }
@@ -213,9 +257,11 @@ public class VentanaProductos extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable t_productos;
+    public static javax.swing.JTable t_productos;
+    public static javax.swing.JTable t_productos1;
     private javax.swing.JTextArea ta_descripcion;
     private javax.swing.JTextField tf_cantidadUnidades;
     private javax.swing.JTextField tf_nombreConcepto;
