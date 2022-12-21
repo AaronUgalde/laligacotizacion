@@ -13,16 +13,16 @@ public class PDF {
     public String correoCliente;
     public String nombreProyecto;
     public List<Producto> productos;
-    public String fechaDeEntrega;
+    public String notas;
     
-    public PDF (Empresa empresa, Cliente cliente, String nombreProyecto, List<Producto> productos, String fechaDeEntrega){
+    public PDF (String empresa, Cliente cliente, String nombreProyecto, List<Producto> productos, String notas){
     
-        this.nombreEmpresa = empresa.nombre;
+        this.nombreEmpresa = empresa;
         this.nombreCliente = cliente.nombre;
         this.correoCliente = cliente.correo;
         this.nombreProyecto = nombreProyecto;
         this.productos = productos;
-        this.fechaDeEntrega = fechaDeEntrega;
+        this.notas = notas;
         
     }
 
@@ -66,12 +66,15 @@ public class PDF {
         this.productos = productos;
     }
 
-    public String getFechaDeEntrega() {
-        return fechaDeEntrega;
+    public String getNotas() {
+        return notas;
     }
 
-    public void setFechaDeEntrega(String fechaDeEntrega) {
-        this.fechaDeEntrega = fechaDeEntrega;
+    public void setFechaDeEntrega(String notas) {
+        this.notas = notas;
     }
-    
+
+    public void generarPDF() {
+        
+    }
 }

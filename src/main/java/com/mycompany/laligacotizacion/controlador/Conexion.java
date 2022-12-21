@@ -20,7 +20,7 @@ public class Conexion {
    public Conexion() {
       try{
          //obtenemos el driver de para mysql
-         Class.forName("com.mysql.jdbc.Driver");
+         Class.forName("com.mysql.cj.jdbc.Driver");
          //obtenemos la conexi�n
          conn = DriverManager.getConnection(url,login,password);
 

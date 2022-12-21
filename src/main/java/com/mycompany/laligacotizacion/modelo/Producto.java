@@ -4,6 +4,8 @@
  */
 package com.mycompany.laligacotizacion.modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author HP
@@ -15,6 +17,7 @@ public class Producto {
     public String descripcion;
     public int precioUnitario;
     public int subtotal;
+    public static ArrayList <Producto> listaProductos = new ArrayList<>();
     
     public Producto(int unidades, String nombre, String descripcion, int precioUnitario){
         this.unidades = unidades;
@@ -22,6 +25,11 @@ public class Producto {
         this.descripcion = descripcion;
         this.precioUnitario = precioUnitario;
         this.subtotal = precioUnitario*unidades;
+        listaProductos.add(this);
+    }
+
+    public static ArrayList<Producto> getListaProductos() {
+        return listaProductos;
     }
 
     public int getUnidades() {
