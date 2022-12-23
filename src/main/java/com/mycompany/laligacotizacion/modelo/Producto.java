@@ -4,6 +4,7 @@
  */
 package com.mycompany.laligacotizacion.modelo;
 
+import com.mycompany.laligacotizacion.controlador.NumeroALetra;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +18,7 @@ public class Producto {
     public String descripcion;
     public int precioUnitario;
     public int subtotal;
+    public String letras;
     public static ArrayList <Producto> listaProductos = new ArrayList<>();
     
     public Producto(int unidades, String nombre, String descripcion, int precioUnitario){
@@ -25,7 +27,16 @@ public class Producto {
         this.descripcion = descripcion;
         this.precioUnitario = precioUnitario;
         this.subtotal = precioUnitario*unidades;
+        this.letras = NumeroALetra.cantidadConLetra(String.valueOf(subtotal)).toUpperCase();
         listaProductos.add(this);
+    }
+    
+    public Producto(int unidades, String nombre, String descripcion, int precioUnitario, boolean modificado){
+        this.unidades = unidades;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precioUnitario = precioUnitario;
+        this.subtotal = precioUnitario*unidades;
     }
 
     public static ArrayList<Producto> getListaProductos() {
@@ -71,5 +82,24 @@ public class Producto {
     public void setSubtotal(int subtotal) {
         this.subtotal = subtotal;
     }
+    
+    public static void imprimirLista (){
+    
+        for(Producto c : listaProductos){
+        
+            System.out.println(c.getNombre());
+            
+        }
+        
+    }
+
+    public String getLetras() {
+        return letras;
+    }
+
+    public void setLetras(String letras) {
+        this.letras = letras;
+    }
+    
     
 }

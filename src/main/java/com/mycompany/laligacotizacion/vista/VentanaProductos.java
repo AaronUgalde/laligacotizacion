@@ -19,14 +19,21 @@ import javax.swing.table.TableModel;
 public class VentanaProductos extends javax.swing.JPanel {
     
     JButton miButton = new JButton("\u2718");
-   
+    JButton miButton1 = new JButton("Modificar");
+    
+    int row;
+    int column;
 
     /**
      * Creates new form VentanaProductos
      */
     public VentanaProductos() {
+        
+        miButton.setName("e");
+        miButton1.setName("m");
         initComponents();
         t_productos.setDefaultRenderer(Object.class, new ButtonRenderer());
+        
     }
     
 
@@ -114,7 +121,7 @@ public class VentanaProductos extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Unidad", "Concepto", "Precio unitario", "Subtotal", "Eliminar"
+                "Unidad", "Concepto", "Precio unitario", "Subtotal", "Eliminar", "Modificar"
             }
         ){
             public boolean isCellEditable(int row, int column){
@@ -251,7 +258,7 @@ public class VentanaProductos extends javax.swing.JPanel {
         try{
             
             Producto miProducto = new Producto(Integer.parseInt(tf_cantidadUnidades.getText()),tf_nombreConcepto.getText(),ta_descripcion.getText(),Integer.parseInt(tf_precioUnitario.getText()));
-            model.addRow(new Object[]{miProducto.getUnidades(),miProducto.getNombre(),miProducto.getPrecioUnitario(),miProducto.getSubtotal(),(JButton)miButton});
+            model.addRow(new Object[]{miProducto.getUnidades(),miProducto.getNombre(),miProducto.getPrecioUnitario(),miProducto.getSubtotal(),(JButton)miButton, (JButton)miButton1});
             
         }catch(Exception e){
         
@@ -263,17 +270,30 @@ public class VentanaProductos extends javax.swing.JPanel {
 
     private void t_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_productosMouseClicked
         
-        int column = t_productos.getSelectedColumn();
-        int row = t_productos.getSelectedRow();
+        column = t_productos.getSelectedColumn();
+        row = t_productos.getSelectedRow();
         
         if(row < t_productos.getRowCount() && row >= 0 && column < t_productos.getColumnCount() && column >= 0){
         
             Object value = t_productos.getValueAt(row, column);
             if(value instanceof JButton){
-        
-                DefaultTableModel model = (DefaultTableModel) t_productos.getModel();
-                model.removeRow(row);
-                Producto.listaProductos.remove(row);
+                
+                JButton boton = (JButton) value;
+                if(boton.getName().equals("m")){
+                
+                    VentanaModificar miVentanaModificar = new VentanaModificar();
+                    miVentanaModificar.setVisible(true);
+                    
+                }
+                if(boton.getName().equals("e")){
+                
+                    DefaultTableModel model = (DefaultTableModel) t_productos.getModel();
+                    model.removeRow(row);
+                    Producto.listaProductos.remove(row);
+                    System.out.println("lista");
+                    Producto.imprimirLista();
+                    
+                }
                 
             }
         }  
