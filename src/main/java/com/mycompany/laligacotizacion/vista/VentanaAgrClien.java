@@ -102,8 +102,8 @@ public class VentanaAgrClien extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        ClienteBD.registrarCliente(tf_nombreCliente.getText(),tf_correoCliente.getText(),EmpresaBD.obtenerEmpresa((String) miVentanaEmpresa.jc_empresas.getSelectedItem()).getIdEmpresa());
-        VentanaPrincipal.llenarClientes(EmpresaBD.obtenerEmpresa((String) miVentanaEmpresa.jc_empresas.getSelectedItem()).getIdEmpresa());
+        ClienteBD.registrarCliente(tf_nombreCliente.getText(),tf_correoCliente.getText(), (String) miVentanaEmpresa.jc_empresas.getSelectedItem());
+        VentanaPrincipal.llenarClientes((String) miVentanaEmpresa.jc_empresas.getSelectedItem());
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

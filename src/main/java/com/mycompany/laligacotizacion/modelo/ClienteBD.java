@@ -19,20 +19,21 @@ public class ClienteBD {
     
     public static ArrayList<Cliente> listaClientes = new ArrayList<>();
     
-    public static void registrarCliente(String nombre, String correo, int idEmpresa){
+    public static void registrarCliente(String nombre, String correo, String nombre_empresa){
     
         Conexion miConexion = new Conexion();
         
         try{
         
-            PreparedStatement ps = miConexion.getConnection().prepareStatement("INSERT INTO cliente (nombre_cliente, correo_cliente, idempresa) VALUES(?,?,?)");
+            PreparedStatement ps = miConexion.getConnection().prepareStatement("INSERT INTO cliente (nombre_cliente, correo_cliente, nombre_empresa) VALUES(?,?,?)");
             ps.setString(1, nombre);
             ps.setString(2, correo);
-            ps.setInt(3, idEmpresa);
+            ps.setString(3, nombre_empresa);
             ps.executeUpdate();
             
         }catch(SQLException e){
-        
+            
+            System.out.println("a");
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "no se registro el cliente");
             
@@ -59,7 +60,7 @@ public class ClienteBD {
         
     }
     
-    public static ArrayList<Cliente> obtenerClientes(int idEmpresa){
+    public static ArrayList<Cliente> obtenerClientes(String nombre_empresa){
     
         Conexion miConexion = new Conexion ();
         ResultSet rs = null;
@@ -67,13 +68,13 @@ public class ClienteBD {
         
         try{
         
-            PreparedStatement ps = miConexion.getConnection().prepareStatement("SELECT * FROM cliente WHERE idempresa = (?)");
-            ps.setInt(1, idEmpresa);
+            PreparedStatement ps = miConexion.getConnection().prepareStatement("SELECT * FROM cliente WHERE nombre_empresa = (?)");
+            ps.setString(1, nombre_empresa);
             rs = ps.executeQuery();
             
             while(rs.next()){
             
-                Cliente miCliente = new Cliente(rs.getInt(1),rs.getString(3),rs.getString(2),rs.getInt(4));
+                Cliente miCliente = new Cliente(rs.getString(2),rs.getString(1),rs.getString(3));
                 listaClientes.add(miCliente);
                 
             }

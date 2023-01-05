@@ -9,10 +9,10 @@ import java.sql.*;
  *
  */
 public class Conexion {
-   static String bd = "railway";
+   static String bd = "laliga";
    static String login = "root";
-   static String password = "mvqpytn5WqvSY7ph9lK8";
-   static String url = "jdbc:mysql://root:mvqpytn5WqvSY7ph9lK8@containers-us-west-107.railway.app:6646/railway";
+   static String password = "1234";
+   static String url = "jdbc:hsqldb:file:resources\\laliga";
 
    Connection conn = null;
 
@@ -20,7 +20,7 @@ public class Conexion {
    public Conexion() {
       try{
          //obtenemos el driver de para mysql
-         Class.forName("com.mysql.cj.jdbc.Driver");
+         Class.forName("org.hsqldb.jdbcDriver");
          //obtenemos la conexi�n
          conn = DriverManager.getConnection(url,login,password);
 

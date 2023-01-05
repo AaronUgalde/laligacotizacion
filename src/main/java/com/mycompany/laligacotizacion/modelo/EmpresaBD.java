@@ -70,7 +70,7 @@ public class EmpresaBD {
             
             while(rs.next()){
             
-               Empresa miEmpresa = new Empresa(rs.getInt(1),rs.getString(2));
+               Empresa miEmpresa = new Empresa(rs.getString(1));
                listaEmpresas.add(miEmpresa);
                 
             }

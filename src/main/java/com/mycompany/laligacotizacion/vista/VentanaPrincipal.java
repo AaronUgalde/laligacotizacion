@@ -11,7 +11,10 @@ import com.mycompany.laligacotizacion.modelo.EmpresaBD;
 import com.mycompany.laligacotizacion.modelo.PDF;
 import com.mycompany.laligacotizacion.modelo.Producto;
 import java.awt.BorderLayout;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -82,9 +85,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
     }
     
-    static void llenarClientes(int idEmpresa){
+    static void llenarClientes(String nombre_empresa){
     
-        misClientes = ClienteBD.obtenerClientes(idEmpresa);
+        misClientes = ClienteBD.obtenerClientes(nombre_empresa);
         miVentanaCliente.jc_clientes.removeAllItems();
         miVentanaEliClien.jc_eliCliente.removeAllItems();
         
@@ -216,7 +219,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             btn_anterior.setEnabled(true);
             miVentanaEmpresa.setVisible(false);
             miVentanaCliente.setVisible(true);
-            llenarClientes(EmpresaBD.obtenerEmpresa((String) miVentanaEmpresa.jc_empresas.getSelectedItem()).getIdEmpresa());
+            llenarClientes((String) miVentanaEmpresa.jc_empresas.getSelectedItem());
             
         }else if(miVentanaCliente.isVisible()){
         
@@ -234,7 +237,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btn_generarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generarPDFActionPerformed
         
         PDF miPdf = new PDF(VentanaEmpresa.jc_empresas.getSelectedItem().toString(), ClienteBD.getCliente(VentanaCliente.jc_clientes.getSelectedItem().toString()), VentanaProductos.tf_nombreProyecto.getText(), Producto.getListaProductos(), VentanaProductos.ta_notas.getText());
-        miPdf.generarPDF();
+        try {
+            miPdf.generarPDF();
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_generarPDFActionPerformed
 
     /**

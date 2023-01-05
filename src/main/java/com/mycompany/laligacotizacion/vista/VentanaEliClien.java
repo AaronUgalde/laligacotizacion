@@ -76,7 +76,7 @@ public class VentanaEliClien extends javax.swing.JPanel {
     private void btn_eliClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliClienteActionPerformed
 
         ClienteBD.eliminarCliente(jc_eliCliente.getSelectedItem().toString());
-        VentanaPrincipal.llenarClientes(EmpresaBD.obtenerEmpresa((String) miVentanaEmpresa.jc_empresas.getSelectedItem()).getIdEmpresa());
+        VentanaPrincipal.llenarClientes((String) miVentanaEmpresa.jc_empresas.getSelectedItem());
         
     }//GEN-LAST:event_btn_eliClienteActionPerformed
 

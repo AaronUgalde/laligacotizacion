@@ -10,31 +10,20 @@ package com.mycompany.laligacotizacion.modelo;
  */
 public class Cliente {
     
-    public int idCliente;
-    public int idEmpresa;
+    public String nombre_empresa;
     public String correo;
     public String nombre;
 
-    public Cliente(int idCliente, String correo, String nombre, Empresa miEmpresa) {
-        this.idCliente = idCliente;
+    public Cliente(String correo, String nombre, Empresa miEmpresa) {
         this.correo = correo;
         this.nombre = nombre;
-        this.idEmpresa = miEmpresa.idEmpresa;
+        this.nombre_empresa = miEmpresa.nombre_empresa;
     }
     
-    public Cliente(int idCliente, String correo, String nombre, int idEmpresa) {
-        this.idCliente = idCliente;
+    public Cliente(String correo, String nombre, String nombre_empresa) {
         this.correo = correo;
         this.nombre = nombre;
-        this.idEmpresa = idEmpresa;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+        this.nombre_empresa = nombre_empresa;
     }
 
     public String getCorreo() {
@@ -53,12 +42,12 @@ public class Cliente {
         this.nombre = nombre;
     }
     
-    public int getIdEmpresa(){
-        return idEmpresa;
+    public String getNombre_empresa(){
+        return nombre_empresa;
     }
     
     public void setIdEmpresa(Empresa miEmpresa){
-        this.idEmpresa = miEmpresa.idEmpresa;
+        this.nombre_empresa = miEmpresa.nombre_empresa;
     }
     
 }

@@ -13,33 +13,17 @@ import java.sql.PreparedStatement;
  */
 public class Empresa {
     
-    public int idEmpresa;
-    public String nombre;
+    public String nombre_empresa;
     
-    public Empresa (int idEmpresa, String nombre){
-        this.idEmpresa = idEmpresa;
-        this.nombre = nombre;
-    }
-
-    public int getIdEmpresa() {
-        return idEmpresa;
-    }
-
-    public void setIdEmpresa(int idEmpresa) {
-        this.idEmpresa = idEmpresa;
+    public Empresa (String nombre_empresa){
+        this.nombre_empresa = nombre_empresa;
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre_empresa;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre_empresa = nombre_empresa;
     }
-
-    @Override
-    public String toString() {
-        return "Empresa{" + "idEmpresa=" + idEmpresa + ", nombre=" + nombre + '}';
-    }
-    
 }
