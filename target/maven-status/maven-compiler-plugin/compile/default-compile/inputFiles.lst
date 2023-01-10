@@ -1,20 +1,20 @@
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\controlador\Principal.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaEmpresa.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\modelo\PDF.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaModificar.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\modelo\Empresa.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaEliClien.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaProductos.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\modelo\ClienteBD.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaEliEmp.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\controlador\NumeroALetra.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\modelo\Producto.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\controlador\Conexion.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaCliente.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\modelo\Cliente.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaPrincipal.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\ButtonRenderer.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaAgrClien.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\controlador\Verificador.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\modelo\EmpresaBD.java
-C:\Users\HP\Desktop\cosas_aaroncio\programacion\java\proyectos\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaAgrEmp.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\modelo\EmpresaBD.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaModificar.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\modelo\Cliente.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaCliente.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\modelo\ClienteBD.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaAgrEmp.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\controlador\NumeroALetra.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaEmpresa.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaEliClien.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaPrincipal.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\modelo\PDF.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaEliEmp.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\controlador\Verificador.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\controlador\Principal.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\modelo\Producto.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaProductos.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\modelo\Empresa.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\controlador\Conexion.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\VentanaAgrClien.java
+D:\cosasMias\CosasDeProgramacion\la liga\laligacotizacion\src\main\java\com\mycompany\laligacotizacion\vista\ButtonRenderer.java

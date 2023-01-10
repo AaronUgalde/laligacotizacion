@@ -148,9 +148,9 @@ public class PDF {
             unidad.setBackgroundColor(ColorConstants.BLUE);
             tabla.addCell(unidad);
             
-            Cell Descripción = new Cell().add(new Paragraph("Descripción"));
-            Descripción.setBackgroundColor(ColorConstants.BLUE);
-            tabla.addCell(Descripción);
+            Cell descripción = new Cell().add(new Paragraph("Descripción"));
+            descripción.setBackgroundColor(ColorConstants.BLUE);
+            tabla.addCell(descripción);
 
             Cell unitario = new Cell().add(new Paragraph("Precio unitario"));
             unitario.setBackgroundColor(ColorConstants.BLUE);
@@ -160,6 +160,21 @@ public class PDF {
             subtotal.setBackgroundColor(ColorConstants.BLUE);
             tabla.addCell(subtotal);
             
+            for(Producto p: Producto.listaProductos){
+            
+                Cell unidadProducto = new Cell().add(new Paragraph(String.valueOf(p.unidades)));
+                tabla.addCell(unidadProducto);
+                
+                Cell descripciónProducto = new Cell().add(new Paragraph(p.nombre+": "+p.descripcion));
+                tabla.addCell(descripciónProducto);
+                
+                Cell unitarioProducto = new Cell().add(new Paragraph(String.valueOf(p.precioUnitario)));
+                tabla.addCell(unitarioProducto);
+                
+                Cell subtotalProducto = new Cell().add(new Paragraph(String.valueOf(p.subtotal)));
+                tabla.addCell(subtotalProducto);
+                
+            }
             
             tabla.setFixedPosition(20, 575, stamper.getPage(1).getMediaBox().getWidth()-40);
             
