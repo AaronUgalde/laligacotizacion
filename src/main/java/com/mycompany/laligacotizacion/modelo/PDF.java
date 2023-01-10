@@ -6,6 +6,7 @@ package com.mycompany.laligacotizacion.modelo;
 
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.kernel.colors.DeviceCmyk;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import static com.itextpdf.kernel.pdf.PdfName.BaseFont;
@@ -14,9 +15,12 @@ import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.Style;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.element.Text;
+import com.mycompany.laligacotizacion.controlador.NumeroALetra;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,6 +40,10 @@ public class PDF {
     public String nombreProyecto;
     public List<Producto> productos;
     public String notas;
+    public float total;
+    public float iva;
+    public float totaliva;
+    public String letras;
     
     public PDF (String empresa, Cliente cliente, String nombreProyecto, List<Producto> productos, String notas){
     
@@ -44,6 +52,17 @@ public class PDF {
         this.correoCliente = cliente.correo;
         this.nombreProyecto = nombreProyecto;
         this.productos = productos;
+        for (Producto c: productos){
+        
+            this.total += c.subtotal;
+            
+        }
+        this.iva = (float) (this.total * 0.16);
+        this.totaliva = iva+total;
+        this.letras = NumeroALetra.cantidadConLetra(String.valueOf(totaliva)).toUpperCase();
+        System.out.println(total);
+        System.out.println(iva);
+        System.out.println(totaliva);
         this.notas = notas;
         
     }
@@ -112,6 +131,9 @@ public class PDF {
             PdfPage page = stamper.getPage(1);
             PdfCanvas canvas = new PdfCanvas(page);
             
+            Style style = new Style();
+            style.setFontColor(ColorConstants.WHITE);
+            
             //fecha
             canvas.beginText();
             canvas.setFontAndSize(PdfFontFactory.createFont(StandardFonts.HELVETICA),12);
@@ -142,25 +164,26 @@ public class PDF {
             
             //Tabla
         
-            Table tabla = new Table(4).useAllAvailableWidth();;
-
-            Cell unidad = new Cell().add(new Paragraph("Unidad"));
+            Table tabla = new Table(4).useAllAvailableWidth();
+            tabla.setFixedPosition(20, 125, stamper.getPage(1).getMediaBox().getWidth()-40);
+            
+            Cell unidad = new Cell().add(new Paragraph(new Text("Unidad").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
             unidad.setBackgroundColor(ColorConstants.BLUE);
             tabla.addCell(unidad);
             
-            Cell descripción = new Cell().add(new Paragraph("Descripción"));
+            Cell descripción = new Cell().add(new Paragraph(new Text("descripción").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
             descripción.setBackgroundColor(ColorConstants.BLUE);
             tabla.addCell(descripción);
 
-            Cell unitario = new Cell().add(new Paragraph("Precio unitario"));
+            Cell unitario = new Cell().add(new Paragraph(new Text("unitario").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
             unitario.setBackgroundColor(ColorConstants.BLUE);
             tabla.addCell(unitario);
             
-            Cell subtotal = new Cell().add(new Paragraph("Subtotal"));
+            Cell subtotal = new Cell().add(new Paragraph(new Text("subtotal").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
             subtotal.setBackgroundColor(ColorConstants.BLUE);
             tabla.addCell(subtotal);
             
-            for(Producto p: Producto.listaProductos){
+            for(Producto p: this.productos){
             
                 Cell unidadProducto = new Cell().add(new Paragraph(String.valueOf(p.unidades)));
                 tabla.addCell(unidadProducto);
@@ -176,7 +199,29 @@ public class PDF {
                 
             }
             
-            tabla.setFixedPosition(20, 575, stamper.getPage(1).getMediaBox().getWidth()-40);
+            Cell notas = new Cell(2,2).add(new Paragraph(this.notas));
+            tabla.addCell(notas);
+            
+            Cell textoTotal = new Cell().add(new Paragraph("TOTAL"));
+            tabla.addCell(textoTotal);
+            
+            Cell total = new Cell().add(new Paragraph(String.valueOf(this.total)));
+            tabla.addCell(total);
+            
+            Cell textoIva = new Cell().add(new Paragraph("IVA"));
+            tabla.addCell(textoIva);
+            
+            Cell iva = new Cell().add(new Paragraph(String.valueOf(this.iva)));
+            tabla.addCell(iva);
+            
+            Cell totalenletra = new Cell(1,2).add(new Paragraph(this.letras));
+            tabla.addCell(totalenletra);
+            
+            Cell textoTotal2 = new Cell().add(new Paragraph("TOTAL"));
+            tabla.addCell(textoTotal2);
+            
+            Cell totalIva = new Cell().add(new Paragraph(String.valueOf(totaliva)));
+            tabla.addCell(totalIva);
             
             doc.add(tabla);
             

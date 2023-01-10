@@ -99,7 +99,7 @@ public class NumeroALetra {
  
         switch (unidades) {
             case 0: break;
-            case 1: result.append("Un "); break;
+            case 1: result.append("Uno"); break;
             case 2: result.append("Dos "); break;
             case 3: result.append("Tres "); break;
             case 4: result.append("Cuatro "); break;
