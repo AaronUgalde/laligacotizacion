@@ -236,7 +236,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btn_generarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_generarPDFActionPerformed
         
-        PDF miPdf = new PDF(VentanaEmpresa.jc_empresas.getSelectedItem().toString(), ClienteBD.getCliente(VentanaCliente.jc_clientes.getSelectedItem().toString()), VentanaProductos.tf_nombreProyecto.getText(), Producto.getListaProductos(), VentanaProductos.ta_notas.getText());
+        PDF miPdf = new PDF(VentanaEmpresa.jc_empresas.getSelectedItem().toString(), ClienteBD.getCliente(VentanaCliente.jc_clientes.getSelectedItem().toString()), VentanaProductos.tf_nombreProyecto.getText(), Producto.getListaProductos(), VentanaProductos.ta_notas.getText(), VentanaProductos.tf_fechaDelProyecto.getText());
         try {
             miPdf.generarPDF();
         } catch (IOException ex) {

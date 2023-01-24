@@ -5,8 +5,10 @@
 package com.mycompany.laligacotizacion.modelo;
 
 import com.itextpdf.io.font.constants.StandardFonts;
+import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.colors.DeviceCmyk;
+import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import static com.itextpdf.kernel.pdf.PdfName.BaseFont;
@@ -16,20 +18,19 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.Style;
+import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Text;
+import com.itextpdf.layout.properties.TextAlignment;
 import com.mycompany.laligacotizacion.controlador.NumeroALetra;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import javax.swing.JFileChooser;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.time.LocalDate;
+
  
 
 public class PDF {
@@ -44,10 +45,12 @@ public class PDF {
     public float iva;
     public float totaliva;
     public String letras;
+    public String fecha;
     
-    public PDF (String empresa, Cliente cliente, String nombreProyecto, List<Producto> productos, String notas){
+    public PDF (String empresa, Cliente cliente, String nombreProyecto, List<Producto> productos, String notas, String fecha){
     
         this.nombreEmpresa = empresa;
+        this.fecha = fecha;
         this.nombreCliente = cliente.nombre;
         this.correoCliente = cliente.correo;
         this.nombreProyecto = nombreProyecto;
@@ -138,7 +141,7 @@ public class PDF {
             canvas.beginText();
             canvas.setFontAndSize(PdfFontFactory.createFont(StandardFonts.HELVETICA),12);
             canvas.moveText(100, 700);
-            canvas.showText(LocalDate.now().toString());
+            canvas.showText(fecha);
             canvas.endText();
             
             //Empresa
@@ -165,37 +168,70 @@ public class PDF {
             //Tabla
         
             Table tabla = new Table(4).useAllAvailableWidth();
-            tabla.setFixedPosition(20, 125, stamper.getPage(1).getMediaBox().getWidth()-40);
+            tabla.setFixedPosition(20, 275, stamper.getPage(1).getMediaBox().getWidth()-40);
+            tabla.setBorder(Border.NO_BORDER);
             
             Cell unidad = new Cell().add(new Paragraph(new Text("Unidad").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
             unidad.setBackgroundColor(ColorConstants.BLUE);
+            unidad.setTextAlignment(TextAlignment.CENTER);
+            unidad.setBorder(Border.NO_BORDER);
             tabla.addCell(unidad);
             
-            Cell descripción = new Cell().add(new Paragraph(new Text("descripción").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
+            Cell descripción = new Cell().add(new Paragraph(new Text("Descripción").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
             descripción.setBackgroundColor(ColorConstants.BLUE);
+            descripción.setTextAlignment(TextAlignment.CENTER);
+            descripción.setBorder(Border.NO_BORDER);
             tabla.addCell(descripción);
 
-            Cell unitario = new Cell().add(new Paragraph(new Text("unitario").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
+            Cell unitario = new Cell().add(new Paragraph(new Text("Unitario").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
             unitario.setBackgroundColor(ColorConstants.BLUE);
+            unitario.setTextAlignment(TextAlignment.CENTER);
+            unitario.setBorder(Border.NO_BORDER);
             tabla.addCell(unitario);
             
-            Cell subtotal = new Cell().add(new Paragraph(new Text("subtotal").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
+            Cell subtotal = new Cell().add(new Paragraph(new Text("Subtotal").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
             subtotal.setBackgroundColor(ColorConstants.BLUE);
+            subtotal.setTextAlignment(TextAlignment.CENTER);
+            subtotal.setBorder(Border.NO_BORDER);
             tabla.addCell(subtotal);
             
-            for(Producto p: this.productos){
+            Color colorAzulfuerte = new DeviceRgb(12, 189, 233);
+            Color colorAzul = new DeviceRgb(185, 226, 236);
+            Color miColor = colorAzul;
             
-                Cell unidadProducto = new Cell().add(new Paragraph(String.valueOf(p.unidades)));
+            for(Producto p: this.productos){
+                
+                Cell unidadProducto = new Cell().add(new Paragraph("$"+String.valueOf(p.unidades)));
+                unidadProducto.setBackgroundColor(miColor);
+                unidadProducto.setTextAlignment(TextAlignment.CENTER);
+                unidadProducto.setBorder(Border.NO_BORDER);
                 tabla.addCell(unidadProducto);
                 
                 Cell descripciónProducto = new Cell().add(new Paragraph(p.nombre+": "+p.descripcion));
+                descripciónProducto.setBackgroundColor(miColor);
+                descripciónProducto.setTextAlignment(TextAlignment.CENTER);
+                descripciónProducto.setBorder(Border.NO_BORDER);
                 tabla.addCell(descripciónProducto);
                 
                 Cell unitarioProducto = new Cell().add(new Paragraph(String.valueOf(p.precioUnitario)));
+                unitarioProducto.setBackgroundColor(miColor);
+                unitarioProducto.setBorder(Border.NO_BORDER);
                 tabla.addCell(unitarioProducto);
                 
                 Cell subtotalProducto = new Cell().add(new Paragraph(String.valueOf(p.subtotal)));
+                subtotalProducto.setBackgroundColor(miColor);
+                subtotalProducto.setBorder(Border.NO_BORDER);
                 tabla.addCell(subtotalProducto);
+                
+                if(miColor == colorAzul){
+                
+                    miColor = colorAzulfuerte;
+                    
+                }else{
+                
+                    miColor = colorAzul;
+                    
+                }
                 
             }
             
