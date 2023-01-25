@@ -12,8 +12,8 @@ public class Conexion {
    static String bd = "laliga";
    static String login = "root";
    static String password = "1234";
-   static String url = "jdbc:hsqldb:file:resources\\laliga";
-
+   static String url = "jdbc:hsqldb:file:./resources/laliga";
+   
    Connection conn = null;
 
    /** Constructor de DbConnection */
