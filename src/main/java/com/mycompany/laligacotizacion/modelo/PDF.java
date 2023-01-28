@@ -28,6 +28,8 @@ import com.mycompany.laligacotizacion.controlador.NumeroALetra;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
 import javax.swing.JFileChooser;
 
@@ -132,6 +134,12 @@ public class PDF {
 
     public void generarPDF() throws IOException {
         
+        System.out.println(totaliva);
+        DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
+        separadoresPersonalizados.setDecimalSeparator('.');
+
+        DecimalFormat formato1 = new DecimalFormat("#.00", separadoresPersonalizados);
+        
         System.out.println(decimales+"decimales");
         PdfReader reader = new PdfReader("./resources/formato.pdf");
         JFileChooser fileChooser = new JFileChooser();
@@ -153,28 +161,35 @@ public class PDF {
             //fecha
             canvas.beginText();
             canvas.setFontAndSize(PdfFontFactory.createFont(StandardFonts.HELVETICA),12);
-            canvas.moveText(100, 700);
+            canvas.moveText(80, 700);
             canvas.showText(fecha);
             canvas.endText();
             
             //Empresa
             canvas.beginText();
             canvas.setFontAndSize(PdfFontFactory.createFont(StandardFonts.HELVETICA),12);
-            canvas.moveText(100, 675);
+            canvas.moveText(80, 675);
             canvas.showText(nombreEmpresa);
             canvas.endText();
             
             //Contacto
             canvas.beginText();
             canvas.setFontAndSize(PdfFontFactory.createFont(StandardFonts.HELVETICA),12);
-            canvas.moveText(100, 650);
+            canvas.moveText(80, 656);
             canvas.showText(nombreCliente);
+            canvas.endText();
+            
+            //Email
+            canvas.beginText();
+            canvas.setFontAndSize(PdfFontFactory.createFont(StandardFonts.HELVETICA),12);
+            canvas.moveText(330, 656);
+            canvas.showText(correoCliente);
             canvas.endText();
             
             //Proyecto
             canvas.beginText();
             canvas.setFontAndSize(PdfFontFactory.createFont(StandardFonts.HELVETICA),12);
-            canvas.moveText(100, 625);
+            canvas.moveText(80, 625);
             canvas.showText(nombreProyecto);
             canvas.endText();
             
@@ -269,6 +284,8 @@ public class PDF {
             Cell textoTotal2 = new Cell().add(new Paragraph("TOTAL"));
             tabla.addCell(textoTotal2);
             
+            String totalivaS = formato1.format(totaliva);
+            System.out.println(totalivaS+ "asdasd");
             Cell totalIva = new Cell().add(new Paragraph("$"+String.valueOf(totaliva)));
             tabla.addCell(totalIva);
             
