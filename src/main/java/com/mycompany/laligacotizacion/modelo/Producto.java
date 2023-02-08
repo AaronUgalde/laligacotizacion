@@ -16,12 +16,12 @@ public class Producto {
     public int unidades;
     public String nombre;
     public String descripcion;
-    public int precioUnitario;
-    public int subtotal;
+    public float precioUnitario;
+    public float subtotal;
     public String letras;
     public static ArrayList <Producto> listaProductos = new ArrayList<>();
     
-    public Producto(int unidades, String nombre, String descripcion, int precioUnitario){
+    public Producto(int unidades, String nombre, String descripcion, float precioUnitario){
         this.unidades = unidades;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -67,7 +67,7 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public int getPrecioUnitario() {
+    public float getPrecioUnitario() {
         return precioUnitario;
     }
 
@@ -75,7 +75,7 @@ public class Producto {
         this.precioUnitario = precioUnitario;
     }
 
-    public int getSubtotal() {
+    public float getSubtotal() {
         return subtotal;
     }
 

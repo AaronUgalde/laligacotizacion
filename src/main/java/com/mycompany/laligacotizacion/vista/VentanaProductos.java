@@ -268,14 +268,14 @@ public class VentanaProductos extends javax.swing.JPanel {
     private void btn_agrProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agrProductoActionPerformed
         DefaultTableModel model = (DefaultTableModel) t_productos.getModel();
         try{
-            
-            Producto miProducto = new Producto(Integer.parseInt(tf_cantidadUnidades.getText()),tf_nombreConcepto.getText(),ta_descripcion.getText(),Integer.parseInt(tf_precioUnitario.getText()));
+            System.out.println(ta_descripcion.getText());   
+            Producto miProducto = new Producto(Integer.parseInt(tf_cantidadUnidades.getText()),tf_nombreConcepto.getText(),ta_descripcion.getText(),Float.valueOf(tf_precioUnitario.getText()));
             model.addRow(new Object[]{miProducto.getUnidades(),miProducto.getNombre(),miProducto.getPrecioUnitario(),miProducto.getSubtotal(),(JButton)miButton, (JButton)miButton1});
             
         }catch(Exception e){
         
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Verifique los datosa del producto");
+            JOptionPane.showMessageDialog(null, "Verifique los datos del producto");
             
         }
     }//GEN-LAST:event_btn_agrProductoActionPerformed
@@ -318,7 +318,7 @@ public class VentanaProductos extends javax.swing.JPanel {
     private void tf_cantidadUnidadesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_cantidadUnidadesKeyTyped
         int key = evt.getKeyChar();
 
-        boolean numeros = key >= 48 && key <= 57;
+        boolean numeros = key >= 48 && key <= 57 || key == ".".charAt(0);
         
         if (!numeros)
         {
@@ -329,7 +329,7 @@ public class VentanaProductos extends javax.swing.JPanel {
     private void tf_precioUnitarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_precioUnitarioKeyTyped
         int key = evt.getKeyChar();
 
-        boolean numeros = key >= 48 && key <= 57;
+        boolean numeros = key >= 48 && key <= 57 || key == ".".charAt(0);
         
         if (!numeros)
         {

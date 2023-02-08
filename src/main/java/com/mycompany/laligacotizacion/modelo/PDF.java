@@ -49,6 +49,7 @@ public class PDF {
     public String letras;
     public String fecha;
     public String decimales;
+    public String totalivaS;
     
     public PDF (String empresa, Cliente cliente, String nombreProyecto, List<Producto> productos, String notas, String fecha){
     
@@ -66,7 +67,13 @@ public class PDF {
         this.iva = (float) (this.total * 0.16);
         this.totaliva = iva+total;
         this.letras = NumeroALetra.cantidadConLetra(String.valueOf(totaliva)).toUpperCase();
-        this.decimales = Float.toString(totaliva).substring(Float.toString(totaliva).indexOf(".")).replaceAll("[.]", "");
+        
+        DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
+        separadoresPersonalizados.setDecimalSeparator('.');
+        DecimalFormat formato1 = new DecimalFormat("###,###.00", separadoresPersonalizados);
+        this.totalivaS = formato1.format(totaliva);
+        
+        this.decimales = totalivaS.substring(totalivaS.indexOf(".")).replaceAll("[.]", "");
         
         if (this.decimales.length() == 1){
         
@@ -135,10 +142,10 @@ public class PDF {
     public void generarPDF() throws IOException {
         
         System.out.println(totaliva);
+        
         DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
         separadoresPersonalizados.setDecimalSeparator('.');
-
-        DecimalFormat formato1 = new DecimalFormat("#.00", separadoresPersonalizados);
+        DecimalFormat formato1 = new DecimalFormat("###,###.00", separadoresPersonalizados);
         
         System.out.println(decimales+"decimales");
         PdfReader reader = new PdfReader("./resources/formato.pdf");
@@ -202,7 +209,9 @@ public class PDF {
             Cell unidad = new Cell().add(new Paragraph(new Text("Unidad").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
             unidad.setBackgroundColor(ColorConstants.BLUE);
             unidad.setTextAlignment(TextAlignment.CENTER);
-            unidad.setBorder(Border.NO_BORDER);
+            unidad.setBorderTop(Border.NO_BORDER);
+            unidad.setBorderLeft(Border.NO_BORDER);
+            unidad.setBorderBottom(Border.NO_BORDER);
             tabla.addCell(unidad);
             
             Cell descripción = new Cell().add(new Paragraph(new Text("Descripción").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
@@ -214,7 +223,8 @@ public class PDF {
             Cell unitario = new Cell().add(new Paragraph(new Text("Unitario").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
             unitario.setBackgroundColor(ColorConstants.BLUE);
             unitario.setTextAlignment(TextAlignment.CENTER);
-            unitario.setBorder(Border.NO_BORDER);
+            unitario.setBorderTop(Border.NO_BORDER);
+            unitario.setBorderBottom(Border.NO_BORDER);
             tabla.addCell(unitario);
             
             Cell subtotal = new Cell().add(new Paragraph(new Text("Subtotal").setFontColor(com.itextpdf.kernel.colors.ColorConstants.WHITE)));
@@ -232,21 +242,25 @@ public class PDF {
                 Cell unidadProducto = new Cell().add(new Paragraph(String.valueOf(p.unidades)));
                 unidadProducto.setBackgroundColor(miColor);
                 unidadProducto.setTextAlignment(TextAlignment.CENTER);
-                unidadProducto.setBorder(Border.NO_BORDER);
+                unidadProducto.setBorderTop(Border.NO_BORDER);
+                unidadProducto.setBorderLeft(Border.NO_BORDER);
+                unidadProducto.setBorderBottom(Border.NO_BORDER);
                 tabla.addCell(unidadProducto);
                 
-                Cell descripciónProducto = new Cell().add(new Paragraph(p.nombre+": "+p.descripcion));
+                Cell descripciónProducto = new Cell().add(new Paragraph(p.nombre+": "+p.descripcion).setMultipliedLeading(1.2f).setKeepTogether(true));
                 descripciónProducto.setBackgroundColor(miColor);
                 descripciónProducto.setTextAlignment(TextAlignment.CENTER);
                 descripciónProducto.setBorder(Border.NO_BORDER);
                 tabla.addCell(descripciónProducto);
                 
-               Cell unitarioProducto = new Cell().add(new Paragraph("$").add(String.valueOf(p.precioUnitario)));
+                
+                Cell unitarioProducto = new Cell().add(new Paragraph("$").add(formato1.format(p.precioUnitario)));
                 unitarioProducto.setBackgroundColor(miColor);
-                unitarioProducto.setBorder(Border.NO_BORDER);
+                unitarioProducto.setBorderTop(Border.NO_BORDER);
+                unitarioProducto.setBorderBottom(Border.NO_BORDER);
                 tabla.addCell(unitarioProducto);
                 
-                Cell subtotalProducto = new Cell().add(new Paragraph("$").add(String.valueOf(p.subtotal)));
+                Cell subtotalProducto = new Cell().add(new Paragraph("$").add(formato1.format(p.subtotal)));
                 subtotalProducto.setBackgroundColor(miColor);
                 subtotalProducto.setBorder(Border.NO_BORDER);
                 tabla.addCell(subtotalProducto);
@@ -269,24 +283,23 @@ public class PDF {
             Cell textoTotal = new Cell().add(new Paragraph("TOTAL"));
             tabla.addCell(textoTotal);
             
-            Cell total = new Cell().add(new Paragraph("$").add(String.valueOf(this.total)));
+            Cell total = new Cell().add(new Paragraph("$").add(formato1.format(this.total)));
             tabla.addCell(total);
             
             Cell textoIva = new Cell().add(new Paragraph("IVA"));
             tabla.addCell(textoIva);
             
-            Cell iva = new Cell().add(new Paragraph("$"+String.valueOf(this.iva)));
+            Cell iva = new Cell().add(new Paragraph("$"+formato1.format(this.iva)));
             tabla.addCell(iva);
             
-            Cell totalenletra = new Cell(1,2).add(new Paragraph("(*****"+this.letras+" "+this.decimales+"/100 M.N*****)"));
+            Cell totalenletra = new Cell(1,2).add(new Paragraph("(*****"+this.letras+" PESOS "+this.decimales+"/100 M.N*****)"));
             tabla.addCell(totalenletra);
             
             Cell textoTotal2 = new Cell().add(new Paragraph("TOTAL"));
             tabla.addCell(textoTotal2);
             
-            String totalivaS = formato1.format(totaliva);
-            System.out.println(totalivaS+ "asdasd");
-            Cell totalIva = new Cell().add(new Paragraph("$"+String.valueOf(totaliva)));
+            
+            Cell totalIva = new Cell().add(new Paragraph("$"+totalivaS));
             tabla.addCell(totalIva);
             
             doc.add(tabla);

@@ -59,6 +59,12 @@ public class VentanaModificar extends javax.swing.JFrame {
 
         Unidades.setText("Precio unitario");
 
+        jt_mod_precioUnitario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jt_mod_precioUnitarioKeyPressed(evt);
+            }
+        });
+
         jLabel4.setText("Descripcion");
 
         jt_mod_desc.setColumns(20);
@@ -142,6 +148,19 @@ public class VentanaModificar extends javax.swing.JFrame {
         Producto.imprimirLista();
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jt_mod_precioUnitarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_mod_precioUnitarioKeyPressed
+
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57 || key == ".".charAt(0);
+        
+        if (!numeros)
+        {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_jt_mod_precioUnitarioKeyPressed
 
     /**
      * @param args the command line arguments

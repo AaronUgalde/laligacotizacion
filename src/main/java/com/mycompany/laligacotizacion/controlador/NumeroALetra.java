@@ -26,14 +26,14 @@ public class NumeroALetra {
             return result.toString();
         }
  
-        if (triMilMillones > 0) result.append(triTexto(triMilMillones).toString() + "Mil ");
-        if (triMillones > 0)    result.append(triTexto(triMillones).toString());
+        if (triMilMillones > 0) result.append(triTexto(triMilMillones, "nu").toString() + "Mil ");
+        if (triMillones > 0)    result.append(triTexto(triMillones, "nu").toString());
  
         if (triMilMillones == 0 && triMillones == 1) result.append("Millón ");
         else if (triMilMillones > 0 || triMillones > 0) result.append("Millones ");
  
-        if (triMiles > 0)       result.append(triTexto(triMiles).toString() + "Mil ");
-        if (triUnidades > 0)    result.append(triTexto(triUnidades).toString());
+        if (triMiles > 0)       result.append(triTexto(triMiles, "nu").toString() + "Mil ");
+        if (triUnidades > 0)    result.append(triTexto(triUnidades, "u").toString());
  
         return result.toString();
     }
@@ -45,7 +45,7 @@ public class NumeroALetra {
      * @return  Una cadena de texto que contiene la representación con letra
      *          del número que se recibió como argumento.
      */
-    private static StringBuilder triTexto(int n) {
+    private static StringBuilder triTexto(int n, String u) {
         StringBuilder result = new StringBuilder();
         int centenas = n / 100;
         int decenas  = (n % 100) / 10;
@@ -97,6 +97,7 @@ public class NumeroALetra {
         if (decenas > 2 && unidades > 0)
             result.append("y ");
  
+        if( u.equals("u")){
         switch (unidades) {
             case 0: break;
             case 1: result.append("Uno"); break;
@@ -109,7 +110,20 @@ public class NumeroALetra {
             case 8: result.append("Ocho "); break;
             case 9: result.append("Nueve "); break;
         }
- 
+        }else{
+        switch (unidades) {
+            case 0: break;
+            case 1: result.append("Un "); break;
+            case 2: result.append("Dos "); break;
+            case 3: result.append("Tres "); break;
+            case 4: result.append("Cuatro "); break;
+            case 5: result.append("Cinco "); break;
+            case 6: result.append("Seis "); break;
+            case 7: result.append("Siete "); break;
+            case 8: result.append("Ocho "); break;
+            case 9: result.append("Nueve "); break;
+        }
+        }
         return result;
     }
     
