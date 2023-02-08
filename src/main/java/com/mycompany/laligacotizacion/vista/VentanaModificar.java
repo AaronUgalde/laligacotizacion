@@ -54,6 +54,11 @@ public class VentanaModificar extends javax.swing.JFrame {
                 jt_mod_unidadesActionPerformed(evt);
             }
         });
+        jt_mod_unidades.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_mod_unidadesKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("Nombre");
 
@@ -161,6 +166,19 @@ public class VentanaModificar extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jt_mod_precioUnitarioKeyPressed
+
+    private void jt_mod_unidadesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_mod_unidadesKeyTyped
+        
+        int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57 || key == ".".charAt(0);
+        
+        if (!numeros)
+        {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_jt_mod_unidadesKeyTyped
 
     /**
      * @param args the command line arguments

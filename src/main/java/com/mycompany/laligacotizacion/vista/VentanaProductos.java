@@ -107,6 +107,9 @@ public class VentanaProductos extends javax.swing.JPanel {
             }
         });
         tf_precioUnitario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tf_precioUnitarioKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tf_precioUnitarioKeyTyped(evt);
             }
@@ -336,6 +339,10 @@ public class VentanaProductos extends javax.swing.JPanel {
             evt.consume();
         }
     }//GEN-LAST:event_tf_precioUnitarioKeyTyped
+
+    private void tf_precioUnitarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_precioUnitarioKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tf_precioUnitarioKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
